@@ -1,0 +1,9 @@
+<h2>Authors</h2>
+<form #authorForm="ngForm" (ngSubmit)="onSubmit()">
+  <label for="author-id">Author ID</label>
+  <input id="author-id" name="authorId" type="number" min="1" step="1" required [(ngModel)]="authorId" />
+  <button type="submit" [disabled]="authorForm.invalid">Search</button>
+</form>
+@if (selectedAuthorId !== null) {
+  <p>Author ID {{ selectedAuthorId }} selected. API lookup still needs to be connected.</p>
+}

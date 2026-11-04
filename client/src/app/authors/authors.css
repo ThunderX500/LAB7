@@ -1,0 +1,2 @@
+form { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+input { max-width: 12rem; }

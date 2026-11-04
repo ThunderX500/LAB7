@@ -6,6 +6,7 @@ import {Books} from "./books/books";
 import {Book} from "./books/book/book";
 import {Login} from "./login/login";
 import {Admin} from "./admin/admin";
+import {Authors} from "./authors/authors";
 import {loggedInGuard} from "./logged-in.guard";
 
 const booksRoutes: Routes = [
@@ -16,6 +17,7 @@ export const routes: Routes = [
   {path: 'home', component: Home},
   {path: 'about', component: About},
   {path: 'contact', component: Contact},
+  {path: 'authors', component: Authors},
   { path: 'login', component: Login },
   {
     path: 'admin',

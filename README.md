@@ -1,3 +1,3 @@
-I did: Set up the Book Store starter and added the Authors navigation, route, and ID entry form.
+I did: Imported the Book Store starter, added an Authors menu link and route, and built an author ID form.
 
-What is left: Connect the form to the author-by-ID API and show the author details or a not-found message.
+What is left: Fetch the author by ID and display their information or an appropriate not-found message.
