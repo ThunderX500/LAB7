@@ -16,6 +16,10 @@ export class BooksService {
     return this.http.get<BookEntity>(Url + 'books/' + id);
   }
 
+  public getAuthor(id: string): Observable<AuthorEntity> {
+    return this.http.get<AuthorEntity>(Url + 'authors/' + id);
+  }
+
   public addBook(book: BookEntity): Observable<BookEntity> {
     return this.http.post<BookEntity>(Url + 'books', book);
   }

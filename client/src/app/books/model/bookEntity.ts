@@ -14,6 +14,13 @@ export class AuthorEntity {
   constructor(
     public id: number,
     public firstName: string,
-    public lastName: string
+    public lastName: string,
+    public books?: BookTitleEntity[]
   ){}
+}
+
+export class BookTitleEntity {
+  constructor(
+    public title: string
+  ) {}
 }
