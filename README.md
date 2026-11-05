@@ -5,18 +5,6 @@
 - Andrianina Rakotobe(300428674)
 - Darcy-Joel Kabura(300432705)
 
-## What was done
-
-The Book Store application was extended with a complete Authors lookup feature:
-
-- An **Authors** link was added to the navigation menu and an `authors` route to the router.
-- An author ID form was built with validation (a required, positive integer; the **Search** button
-  stays disabled while the form is invalid).
-- Submitting the form calls `GET /books-api/authors/{id}` on the REST API through `BooksService`.
-- When the author exists, the page displays their ID, first name, last name and the titles of their
-  books. When the ID is unknown (the API answers `404`), the page displays a not-found message
-  instead.
-
 ## Installation
 
 1. Clone the repository and move into the project folder:
@@ -33,38 +21,31 @@ The Book Store application was extended with a complete Authors lookup feature:
    npm install
    ```
 
-3. The server needs a Java 20 (or newer) toolchain. By default it connects to a MySQL database
-   named `booksDb` listening on `localhost:6033` with the user `root` and the password `root`
-   (see `server/src/main/resources/application.properties`).
-
-   To run without installing MySQL, use the `dev` profile instead: it uses an in-memory H2
-   database that is seeded with sample authors and books
-   (`server/src/main/resources/application-dev.properties` and `data-h2.sql`).
+A Java Development Kit (JDK) 20 or newer is required for the server. No database setup is needed:
+the server uses an in-memory H2 database that is seeded with sample authors and books at startup.
 
 ## Usage
 
-- Start the REST API server (from the `server` folder):
+Always start the server first, then the client — the Authors page gets its data from the REST API,
+so the client has nothing to display until the API is up.
 
-  ```bash
-  ./gradlew bootRun                                        # MySQL on localhost:6033
-  ./gradlew bootRun --args='--spring.profiles.active=dev'  # in-memory H2 with sample data
-  ```
+1. Start the REST API server (from the `server` folder):
 
-  The API is served at `http://localhost:8080/books-api` and its documentation at
-  `http://localhost:8080/swagger-ui.html`. Under the `dev` profile the data can also be browsed
-  at `http://localhost:8080/h2-console` (JDBC URL `jdbc:h2:mem:booksDb`, user `sa`, no password).
+   ```bash
+   ./gradlew bootRun
+   ```
 
-- Start the development server (from the `client` folder):
+   The API is served at `http://localhost:8080/books-api` and its documentation at
+   `http://localhost:8080/swagger-ui.html`. 
 
-  ```bash
-  npm start
-  ```
+2. Then start the development server (from the `client` folder):
 
-  The application is served at `http://localhost:4200`; the Authors page is at
-  `http://localhost:4200/authors`.
+   ```bash
+   npm start
+   ```
 
-- Run the unit tests (Karma + Jasmine):
+   The application is served at `http://localhost:4200`;(port may change if occupied) the Authors page is at
+   `http://localhost:4200/authors`. Search for author `1`, `2` or `3` to see the details, and any
+   other number to see the not-found message.
 
-  ```bash
-  npm test
-  ```
+
