@@ -33,20 +33,26 @@ The Book Store application was extended with a complete Authors lookup feature:
    npm install
    ```
 
-3. The server needs a MySQL database named `booksDb` listening on `localhost:6033` with the user
-   `root` and the password `root` (see `server/src/main/resources/application.properties`), and a
-   Java 21 toolchain.
+3. The server needs a Java 20 (or newer) toolchain. By default it connects to a MySQL database
+   named `booksDb` listening on `localhost:6033` with the user `root` and the password `root`
+   (see `server/src/main/resources/application.properties`).
+
+   To run without installing MySQL, use the `dev` profile instead: it uses an in-memory H2
+   database that is seeded with sample authors and books
+   (`server/src/main/resources/application-dev.properties` and `data-h2.sql`).
 
 ## Usage
 
 - Start the REST API server (from the `server` folder):
 
   ```bash
-  ./gradlew bootRun
+  ./gradlew bootRun                                        # MySQL on localhost:6033
+  ./gradlew bootRun --args='--spring.profiles.active=dev'  # in-memory H2 with sample data
   ```
 
   The API is served at `http://localhost:8080/books-api` and its documentation at
-  `http://localhost:8080/swagger-ui.html`.
+  `http://localhost:8080/swagger-ui.html`. Under the `dev` profile the data can also be browsed
+  at `http://localhost:8080/h2-console` (JDBC URL `jdbc:h2:mem:booksDb`, user `sa`, no password).
 
 - Start the development server (from the `client` folder):
 
